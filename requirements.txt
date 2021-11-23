@@ -1,0 +1,4 @@
+opencv
+pypylon
+imageio
+imageio-ffmpeg
