@@ -286,6 +286,7 @@ class BaslerCamera:
         return self.camera.PixelFormat()
 
     def show_preview_window(self):
+        """Displays a preview window for the feed from the camera."""
         try:
             imageWindow = pylon.PylonImageWindow()
             imageWindow.Create(1)
@@ -323,5 +324,3 @@ class BaslerCamera:
             # Error handling.
             print("An exception occurred.")
             print(e.GetDescription())
-
-        return
