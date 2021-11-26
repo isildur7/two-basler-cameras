@@ -124,42 +124,47 @@ class FFMPEGVideoWriter:
             _, ffmpeg_error = self.proc.communicate()
             error = (str(err) + ("\n\nMoviePy error: FFMPEG encountered "
                                  "the following error while writing file %s:"
-                                 "\n\n %s" % (self.filename, str(ffmpeg_error))))
+                                 "\n\n %s" % (self.filename,
+                                              str(ffmpeg_error))))
 
             if b"Unknown encoder" in ffmpeg_error:
 
                 error = error+("\n\nThe video export "
                                "failed because FFMPEG didn't find the "
-                               "specified codec for video encoding (%s). Please"
-                               " install this codec or change the codec when "
-                               "calling write_videofile. For instance:\n"
+                               "specified codec for video encoding (%s)."
+                               " Please install this codec or change the codec"
+                               " when calling write_videofile. For instance:\n"
                                "  >>> clip.write_videofile('myvid.webm', "
                                "codec='libvpx')") % (self.codec)
 
             elif b"incorrect codec parameters ?" in ffmpeg_error:
 
                 error = error+("\n\nThe video export "
-                               "failed, possibly because the codec specified for "
-                               "the video (%s) is not compatible with the given "
-                               "extension (%s). Please specify a valid 'codec' "
-                               "argument in write_videofile. This would be 'libx264' "
-                               "or 'mpeg4' for mp4, 'libtheora' for ogv, 'libvpx for webm. "
-                               "Another possible reason is that the audio codec was not "
-                               "compatible with the video codec. For instance the video "
-                               "extensions 'ogv' and 'webm' only allow 'libvorbis' (default) as a"
+                               "failed, possibly because the codec specified"
+                               " for the video (%s) is not compatible with the"
+                               " given extension (%s). Please specify a valid"
+                               " 'codec' argument in write_videofile. This"
+                               " would be 'libx264' or 'mpeg4' for mp4, "
+                               "'libtheora' for ogv, 'libvpx for webm. Another"
+                               " possible reason is that the audio codec was "
+                               "not compatible with the video codec. For "
+                               "instance the video extensions 'ogv' and 'webm'"
+                               " only allow 'libvorbis' (default) as a "
                                "video codec."
                                ) % (self.codec, self.ext)
 
             elif b"encoder setup failed" in ffmpeg_error:
 
                 error = error+("\n\nThe video export "
-                               "failed, possibly because the bitrate you specified "
-                               "was too high or too low for the video codec.")
+                               "failed, possibly because the bitrate you "
+                               "specified was too high or too low for the "
+                               "video codec.")
 
             elif b"Invalid encoder type" in ffmpeg_error:
 
-                error = error + ("\n\nThe video export failed because the codec "
-                                 "or file extension you provided is not a video")
+                error = error + ("\n\nThe video export failed because the "
+                                 "codec or file extension you provided is not "
+                                 "a video")
 
             raise IOError(error) from err
 
@@ -199,8 +204,8 @@ if __name__ == '__main__':
     NUM_IMAGES = FPS * RECORDING_TIME
 
     with FFMPEGVideoWriter("E:/samplevid.avi",
-                            (cam.Height(), cam.Width()),
-                            fps=20, pixfmt="gray") as writer:
+                           (cam.Height(), cam.Width()),
+                           fps=20, pixfmt="gray") as writer:
 
         cam.StartGrabbingMax(NUM_IMAGES)
         while cam.IsGrabbing():
