@@ -33,7 +33,7 @@ with iio.get_writer(
             '11'     # that the camera probably adds static anyway
         ]) as writer:
 
-    cam.StartGrabbingMax(NUM_IMAGES)
+    cam.StartGrabbingMax(NUM_IMAGES, pylon.GrabStrategy_LatestImageOnly)
     buffer = []
     while cam.IsGrabbing():
         res = cam.RetrieveResult(1000)
