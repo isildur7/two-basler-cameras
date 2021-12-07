@@ -23,7 +23,7 @@ with iio.get_writer(
         'E:\\samplevid0.avi',  # mkv players often support H.264
         fps=FPS,  # FPS is in units Hz; should be real-time.
         codec='libx264',  # When used properly, this is basically
-                              # "PNG for video" (i.e. lossless)
+                          # "PNG for video" (i.e. lossless)
         quality=None,  # disables variable compression
         pixelformat='gray',  # keep it as RGB colours
         ffmpeg_params=[  # compatibility with older library versions
@@ -33,7 +33,7 @@ with iio.get_writer(
             '11'     # that the camera probably adds static anyway
         ]) as writer:
 
-    cam.StartGrabbingMax(NUM_IMAGES)
+    cam.StartGrabbingMax(NUM_IMAGES, pylon.GrabStrategy_LatestImageOnly)
     buffer = []
     while cam.IsGrabbing():
         res = cam.RetrieveResult(1000)
