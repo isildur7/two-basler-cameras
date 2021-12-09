@@ -44,6 +44,10 @@ def videos_from_two_cameras(filename1, filename2, recordTime, pixFormatCam,
     t1.start()
     t2.start()
 
+    # wait till execution is done
+    t1.join()
+    t2.join()
+
     cams.Close()
 
     return
