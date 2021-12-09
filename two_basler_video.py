@@ -135,7 +135,7 @@ def create_n_cameras(n):
     for idx, cam in enumerate(cam_arr):
         cam.Attach(tlf.CreateDevice(devs[idx]))
 
-    return
+    return cam_arr
 
 
 if __name__ == "__main__":
