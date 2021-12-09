@@ -7,6 +7,27 @@ from FFMPEGwriter import FFMPEGVideoWriter
 
 def videos_from_two_cameras(filename1, filename2, recordTime, pixFormatCam,
                             camExposure, fps, pixFormatVideo, writer):
+    """Shoot and save simultaneous video from two Basler cameras.
+
+    Creates and opens a two camera array, sets imaging parameters on both
+    cameras, opens two threads and runs the video capture function for one
+    camera on each thread. Closes the camera array after capture is done. A
+    fixed number of images are captured given by <frame rate> times <time> and
+    written to video. There are two choices of video writers, selected via the
+    'writer' argument - 'imageio' is the writer from python imageio library and
+    'FFMPEG' is the writer from issue #113 on pypylon GitHub repository.
+
+    :param filename1: string filename of the first video file
+    :param filename2: string filename of the second video file
+    :param recordTime: float time of recording in seconds
+    :param pixFormatCam: string pixel format string for the Basler cameras
+    :param camExposure: int exposure time of Basler cameras in microseconds
+    :param fps: float frame rate in frames per second
+    :param pixFormatVideo: string to choose pixel format for the video writer
+    :param: writer: string either 'imageio' or 'FFMPEG' to choose video writer
+
+    :returns: None
+    """
     cams = create_n_cameras(2)
     numImages = fps * recordTime
 
