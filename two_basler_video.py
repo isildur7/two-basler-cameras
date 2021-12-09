@@ -92,3 +92,13 @@ def create_n_cameras(n):
 if __name__ == "__main__":
     FPS = 20
     RECORDING_TIME = 10  # in seconds
+    FILE1 = "./samplevid1.avi"  # extension can be changed
+    FILE2 = "./samplevid2.avi"  # extension can be changed
+    CAMPIXFMT = "Mono8"  # can change to anything available on the camera
+    VIDPIXFMT = "gray"  # since camera is in Mono mode
+    CAMEXPTIME = 40000
+    WRITER = "imageio"  # use either "imageio" or "FFMPEG"
+
+    # shoot video
+    videos_from_two_cameras(FILE1, FILE2, RECORDING_TIME, CAMPIXFMT,
+                            CAMEXPTIME, FPS, VIDPIXFMT, WRITER)
