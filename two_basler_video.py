@@ -29,7 +29,7 @@ def videos_from_two_cameras(filename1, filename2, recordTime, pixFormatCam,
     :returns: None
     """
     cams = create_n_cameras(2)
-    numImages = fps * recordTime
+    numImages = int(fps * recordTime)
 
     cams.Open()
 
