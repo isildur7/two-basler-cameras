@@ -122,6 +122,12 @@ def camera_video(cam, fname, numImages, fps, pixFormatVideo, writer):
 
 
 def create_n_cameras(n):
+    """Creates an array with given number of Basler Cameras.
+
+    :param n: int number of cameras
+
+    :returns: basler camera array object
+    """
     tlf = pylon.TlFactory.GetInstance()
 
     # See all the available devices
