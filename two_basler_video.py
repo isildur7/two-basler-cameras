@@ -54,6 +54,15 @@ def videos_from_two_cameras(filename1, filename2, recordTime, pixFormatCam,
 
 
 def set_camera_properties(cam, fps, pixFormatCam, camExposure):
+    """Sets FPS, pixel format and exposure time for a Basler camera.
+
+    :param cam: Basler camera object
+    :param fps: float desired frame rate in frames per second
+    :param pixFormatCam: string desired camera pixel format
+    :param camExposure: int exposure time in microseconds
+
+    :returns: None
+    """
     cam.PixelFormat = pixFormatCam
     cam.AcquisitionFrameRateEnable.SetValue(True)
     cam.AcquisitionFrameRate.SetValue(fps)
