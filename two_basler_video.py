@@ -70,6 +70,21 @@ def set_camera_properties(cam, fps, pixFormatCam, camExposure):
 
 
 def camera_video(cam, fname, numImages, fps, pixFormatVideo, writer):
+    """Records a video from the given Basler camera.
+
+    Grabs 'numImages' images using the LatestImage and GrabbingMax strategy and
+    stores them in a buffer array. Using a video writer, either from imageio
+    library or from Issue #113 on pypylon GitHub repository, write them to a
+    video saved at the given filename.
+
+    :param cam: Basler camera object
+    :param fname: string filename to store the video
+    :param numImages: int number of images in the video
+    :param fps: float frame rate in frames per second
+    :param pixFormatVideo: string pixel format for the video writer
+    :param writer: string choice of video writer, 'imageio' or 'FFMPEG'
+
+    :returns: None"""
     # sleep for a bit
     sleep(1)
 
